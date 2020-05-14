@@ -19,7 +19,11 @@ const userSchema = new mongoose.Schema({
       delete user.hashedPassword
       return user
     }
+    // ,
+    // virtuals: true
   }
 })
+
+
 
 module.exports = mongoose.model('User', userSchema)
