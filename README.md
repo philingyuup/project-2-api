@@ -3,6 +3,97 @@
 This application allows the user to do x, y, and z. Maybe here's a reason why I wanted to do this project, or
 came up with this idea.
 
+## How to use API
+
+**USER CRUD**
+
+| '/sign-up' | 'POST' |
+```
+{
+ "credentials": {
+   "email": <email>,
+   "password": <password>,
+   "password_confirmation": <password_confirmation>
+ }
+}
+```
+returns status 201 w/ user object
+
+| '/sign-in' | 'POST' |
+```
+{
+  "credentials" : {
+    "email": <email>,
+    "password": <password>
+  }
+}
+```
+returns a status 201 and user object w/ token
+
+
+| '/change-password' | 'PATCH' |
+```
+-header "Authorization: Bearer <token>"
+-data {
+  "passwords": {
+    "old": <oldPW>,
+    "new": <newPW>
+  }
+}
+```
+returns status 204
+
+| '/sign-out' | 'DELETE' |
+```
+-header "Authorization: Bearer <token>"
+```
+returns status 204
+
+**ITEM CRUD**
+| '/items' | 'GET' |
+```
+-header "Authorization: Bearer <Token>"
+```
+returns all objects
+
+| '/items/:id' | 'GET' |
+```
+-header "Authorization: Bearer <token>"
+```
+returns one objects
+
+| '/items' | 'POST' |
+```
+-header "Authorization: Bearer <token>"
+-data {
+  "item": {
+    "name": <name>,
+    "quantity": <quantity>
+  }
+}
+```
+returns object
+
+| '/items/:id' | 'PATCH' |
+```
+-header "Authorization: Bearer <token>"
+-data {
+  "item": {
+    "name": <name>,
+    "quantity": <quantity>
+  }
+}
+```
+returns 204 status
+
+| '/items/:id' | 'DELETE' |
+```
+-header "Authorization: Bearer <token>"
+```
+returns 204 status
+
+
+
 ## Important Links
 
 - [Other Repo](www.link.com)
