@@ -5,7 +5,7 @@ URL_PATH="/items/name"
 
 curl "${API}${URL_PATH}" \
   --include \
-  --request GET \
+  --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{

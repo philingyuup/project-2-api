@@ -45,7 +45,7 @@ router.get('/items', requireToken, (req, res, next) => {
 
 // SHOW
 // GET /examples/5a7db6c74d55bc51bdf39793
-router.get('/items/name', requireToken, (req, res, next) => {
+router.post('/items/name', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Item.find({name: req.body.item.name}).populate('owner')
     .then(handle404)
