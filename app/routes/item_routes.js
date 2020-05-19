@@ -47,7 +47,7 @@ router.get('/items', requireToken, (req, res, next) => {
 // GET /examples/5a7db6c74d55bc51bdf39793
 router.get('/items/name', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
-  Item.find({name: req.body.name}).populate('owner')
+  Item.find({name: req.body.item.name}).populate('owner')
     .then(handle404)
     .then(items => {
       // `examples` will be an array of Mongoose documents
