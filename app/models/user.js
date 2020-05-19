@@ -18,9 +18,8 @@ const userSchema = new mongoose.Schema({
     transform: (_doc, user) => {
       delete user.hashedPassword
       return user
-    }
-    // ,
-    // virtuals: true
+    },
+    virtuals: true
   }
 })
 

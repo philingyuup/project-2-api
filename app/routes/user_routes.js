@@ -64,7 +64,7 @@ router.post('/sign-in', (req, res, next) => {
   let user
 
   // find a user based on the email that was passed
-  User.findOne({ email: req.body.credentials.email })
+  User.findOne({ email: req.body.credentials.email }).populate('lists')
     .then(record => {
       // if we didn't find a user with that email, send 401
       if (!record) {
