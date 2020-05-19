@@ -61,12 +61,16 @@ returns status 204
 ```
 returns all objects
 
-| '/items/:id' | 'GET' |
+| '/items/name' | 'GET' |
 |--- | ---|
 ```
--header "Authorization: Bearer <token>"
+--header "Content-Type: application/json" \
+--header "Authorization: Bearer ${TOKEN}" \
+--data '{
+    "name": "'"${NAME}"'"
+  }'
 ```
-returns one objects
+returns item objects with matching name
 
 | '/items' | 'POST' |
 |--- | ---|

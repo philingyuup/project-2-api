@@ -1,11 +1,14 @@
 #!/bin/sh
 
 API="http://localhost:4741"
-URL_PATH="/items"
+URL_PATH="/items/name"
 
-curl "${API}${URL_PATH}/${ID}" \
+curl "${API}${URL_PATH}" \
   --include \
   --request GET \
-  --header "Authorization: Bearer ${TOKEN}"
-
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --data '{
+      "name": "'"${NAME}"'"
+    }'
 echo

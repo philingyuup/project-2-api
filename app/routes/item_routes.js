@@ -45,12 +45,18 @@ router.get('/items', requireToken, (req, res, next) => {
 
 // SHOW
 // GET /examples/5a7db6c74d55bc51bdf39793
-router.get('/items/:id', requireToken, (req, res, next) => {
+router.get('/items/name', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
-  Item.findById(req.params.id).populate('owner')
+  Item.find({name: req.body.name}).populate('owner')
     .then(handle404)
+    .then(items => {
+      // `examples` will be an array of Mongoose documents
+      // we want to convert each one to a POJO, so we use `.map` to
+      // apply `.toObject` to each one
+      return items.map(item => item.toObject())
+    })
     // if `findById` is succesful, respond with 200 and "example" JSON
-    .then(item => res.status(200).json({ item: item.toObject() }))
+    .then(items => res.status(200).json({ items: items }))
     // if an error occurs, pass it to the handler
     .catch(next)
 })
