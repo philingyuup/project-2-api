@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
   }
 })
 
-
+userSchema.virtual('lists', {
+  ref: 'List',
+  localField: '_id',
+  foreignField: 'owner'
+})
 
 module.exports = mongoose.model('User', userSchema)

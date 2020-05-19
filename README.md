@@ -8,6 +8,7 @@ came up with this idea.
 **USER CRUD**
 
 | '/sign-up' | 'POST' |
+|--- | ---|
 ```
 {
  "credentials": {
@@ -20,6 +21,7 @@ came up with this idea.
 returns status 201 w/ user object
 
 | '/sign-in' | 'POST' |
+|--- | ---|
 ```
 {
   "credentials" : {
@@ -32,6 +34,7 @@ returns a status 201 and user object w/ token
 
 
 | '/change-password' | 'PATCH' |
+|--- | ---|
 ```
 -header "Authorization: Bearer <token>"
 -data {
@@ -44,6 +47,7 @@ returns a status 201 and user object w/ token
 returns status 204
 
 | '/sign-out' | 'DELETE' |
+|--- | ---|
 ```
 -header "Authorization: Bearer <token>"
 ```
@@ -51,30 +55,35 @@ returns status 204
 
 **ITEM CRUD**
 | '/items' | 'GET' |
+|--- | ---|
 ```
 -header "Authorization: Bearer <Token>"
 ```
 returns all objects
 
 | '/items/:id' | 'GET' |
+|--- | ---|
 ```
 -header "Authorization: Bearer <token>"
 ```
 returns one objects
 
 | '/items' | 'POST' |
+|--- | ---|
 ```
 -header "Authorization: Bearer <token>"
 -data {
   "item": {
     "name": <name>,
-    "quantity": <quantity>
+    "quantity": <quantity>,
+    "list": <listID>
   }
 }
 ```
 returns object
 
 | '/items/:id' | 'PATCH' |
+|--- | ---|
 ```
 -header "Authorization: Bearer <token>"
 -data {
@@ -87,10 +96,58 @@ returns object
 returns 204 status
 
 | '/items/:id' | 'DELETE' |
+|--- | ---|
 ```
 -header "Authorization: Bearer <token>"
 ```
 returns 204 status
+
+**LIST CRUD**
+| '/lists' | 'GET' |
+|--- | ---|
+```
+-header "Authorization: Bearer <Token>"
+```
+returns all objects
+
+| '/lists/:id' | 'GET' |
+|--- | ---|
+```
+-header "Authorization: Bearer <token>"
+```
+returns one objects
+
+| '/lists' | 'POST' |
+|--- | ---|
+```
+-header "Authorization: Bearer <token>"
+-data {
+  "list": {
+    "name": <name>
+  }
+}
+```
+returns object
+
+| '/lists/:id' | 'PATCH' |
+|--- | ---|
+```
+-header "Authorization: Bearer <token>"
+-data {
+  "list": {
+    "name": <name>,
+  }
+}
+```
+returns 204 status
+
+| '/lists/:id' | 'DELETE' |
+|--- | ---|
+```
+-header "Authorization: Bearer <token>"
+```
+returns 204 status
+**NOTE**: This deletes all items associated with the list as well
 
 
 

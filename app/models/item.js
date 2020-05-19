@@ -16,6 +16,11 @@ const itemSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  list: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'List',
+    required: true
   }
 },
 {
