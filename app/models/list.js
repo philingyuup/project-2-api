@@ -23,6 +23,7 @@ const listSchema = new mongoose.Schema({
   }
 })
 
+// many items to one list
 listSchema.virtual('items', {
   ref: 'Item',
   localField: '_id',

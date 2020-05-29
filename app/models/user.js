@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
   }
 })
 
+// many lists to one user
 userSchema.virtual('lists', {
   ref: 'List',
   localField: '_id',

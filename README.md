@@ -1,15 +1,46 @@
-# Application Title: A Description
+# FridgePal API
 
-This application allows the user to do x, y, and z. Maybe here's a reason why I wanted to do this project, or
-came up with this idea.
+This is the API portion of my project. Here you'll find the instructions and some details on the server App.
 
-## How to use API
+### How to use API
+Instructions for how to use the API is listed below this README file in the **Instructions** portion.
 
-**USER CRUD**
+###  Links
+[Client App](https://philingyuup.github.io/project-2-client/)
+[Client Repo](https://github.com/philingyuup/project-2-client)
+[API App](https://mysterious-dawn-86601.herokuapp.com/)
+[API Repo](https://github.com/philingyuup/project-2-api)
+
+### Planning Story
+I initially made the item and user schema to start but mongoose makes it easy to expand my schemas. I added list and updated items/users to include refs to the list. Overall the backend was not too difficult to implement because the routes are so similar and the template was pretty generous.
+
+### ERD
+![ERD](https://github.com/philingyuup/project-2-api/raw/master/pblc/ERD.jpg "FridgePal API ERD")
+
+
+### Technologies Used
+- mongoDB
+- mongoose
+- express.js
+- node.js
+- Passport.js
+- CORS
+
+### Unsolved Problems
+- ItemShow (search by name) is accomplished using a 'POST' request to pass in a data body. (workaround)
+
+### Future Features
+- Expand item schema
+- Expand list schema to allow friends
+
+### Instructions
+Below are the instructions on how to make requests to the server API. The codeblocks are the necessary additions required to make a successful API call.
+
+#### USER CRUD
 
 | '/sign-up' | 'POST' |
 |--- | ---|
-```
+```javascript
 {
  "credentials": {
    "email": <email>,
@@ -20,9 +51,11 @@ came up with this idea.
 ```
 returns status 201 w/ user object
 
+---
+
 | '/sign-in' | 'POST' |
 |--- | ---|
-```
+```javascript
 {
   "credentials" : {
     "email": <email>,
@@ -32,10 +65,11 @@ returns status 201 w/ user object
 ```
 returns a status 201 and user object w/ token
 
+---
 
 | '/change-password' | 'PATCH' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 -data {
   "passwords": {
@@ -46,24 +80,29 @@ returns a status 201 and user object w/ token
 ```
 returns status 204
 
+---
+
 | '/sign-out' | 'DELETE' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 ```
 returns status 204
 
-**ITEM CRUD**
+#### ITEM CRUD
+
 | '/items' | 'GET' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <Token>"
 ```
 returns all objects
 
+---
+
 | '/items/name' | 'POST' |
 |--- | ---|
-```
+```javascript
 --header "Content-Type: application/json" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
@@ -74,9 +113,11 @@ returns all objects
 ```
 returns item objects with matching name
 
+---
+
 | '/items' | 'POST' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 -data {
   "item": {
@@ -88,9 +129,11 @@ returns item objects with matching name
 ```
 returns object
 
+---
+
 | '/items/:id' | 'PATCH' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 -data {
   "item": {
@@ -101,31 +144,38 @@ returns object
 ```
 returns 204 status
 
+---
+
 | '/items/:id' | 'DELETE' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 ```
 returns 204 status
 
-**LIST CRUD**
+#### LIST CRUD
+
 | '/lists' | 'GET' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <Token>"
 ```
 returns all objects
 
+---
+
 | '/lists/:id' | 'GET' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 ```
 returns one objects
 
+---
+
 | '/lists' | 'POST' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 -data {
   "list": {
@@ -135,9 +185,11 @@ returns one objects
 ```
 returns object
 
+---
+
 | '/lists/:id' | 'PATCH' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 -data {
   "list": {
@@ -147,50 +199,13 @@ returns object
 ```
 returns 204 status
 
+---
+
 | '/lists/:id' | 'DELETE' |
 |--- | ---|
-```
+```javascript
 -header "Authorization: Bearer <token>"
 ```
 returns 204 status
+
 **NOTE**: This deletes all items associated with the list as well
-
-
-
-## Important Links
-
-- [Other Repo](www.link.com)
-- [Deployed API](www.link.com)
-- [Deployed Client](www.link.com)
-
-## Planning Story
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id ornare magna. Curabitur leo arcu, elementum in posuere vitae, rutrum eu urna. Quisque tincidunt nulla sed mi cursus, nec tristique est fermentum. Etiam lacinia id neque ut egestas. Sed consequat convallis felis nec posuere. Sed non eros sed velit viverra tincidunt. Etiam et tortor sit amet lacus volutpat dignissim. Vestibulum convallis, felis a posuere pretium, turpis enim sollicitudin neque, pretium finibus leo metus sed sapien. Praesent iaculis pharetra nunc ac rhoncus. Duis eu risus in est porttitor egestas sit amet eget metus. Maecenas iaculis auctor ullamcorper. Donec pretium dolor non nisl egestas bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper pulvinar orci interdum mattis. Ut gravida volutpat mauris, a semper risus maximus ut.
-
-### User Stories
-
-- As a user I want to sign in/up
-- As a user I want to Create a new < resource >
-- As a user I want to Read multiple < resources >
-- As a user I want to Read a single < resource >
-- As a user I want to Update a < resource > I own
-- As a user I want to Delete a < resource > I own
-
-### Technologies Used
-
-- jQuery
-- HTML/CSS
-- Bootstrap
-- Javascript
-
-### Unsolved Problems
-
-- Still need to ....
-- Would like to eventually ....
-
-## Images
-
----
-
-#### Wireframe:
-![wireframe](https://lucidchart.zendesk.com/hc/article_attachments/360001080866/Facebook_Wireframe_-_New_Page.png)
